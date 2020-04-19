@@ -97,7 +97,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
 
 
     public GoogleCloudCalculatorPage setInstances(String numberOfInstances) {
-        new WebDriverWait(driver, 10)
+        new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.visibilityOf(instancesField));
         instancesField.sendKeys(numberOfInstances);
         return this;
@@ -124,7 +124,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
 
     public GoogleCloudCalculatorPage addGPUS() {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addGpusCheckbox);
-        new WebDriverWait(driver, 10)
+        new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.visibilityOf(numberOfGpusBtn));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", numberOfGpusBtn);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", necessaryGpus);

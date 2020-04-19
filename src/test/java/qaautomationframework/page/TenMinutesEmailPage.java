@@ -39,7 +39,7 @@ public class TenMinutesEmailPage extends AbstractPage {
     }
 
     public GoogleCloudCalculatorPage expandMessage() {
-        new WebDriverWait(driver, 90)
+        new WebDriverWait(driver, 180)
                 .until(ExpectedConditions.visibilityOf(messageBtn));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", messageBtn);
         return new GoogleCloudCalculatorPage(driver);

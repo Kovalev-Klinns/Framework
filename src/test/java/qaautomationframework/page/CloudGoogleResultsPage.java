@@ -16,7 +16,7 @@ public class CloudGoogleResultsPage extends AbstractPage {
     }
 
     public GoogleCloudCalculatorPage openGoogleCloudCalculatorLink() {
-        new WebDriverWait(driver, 10)
+        new WebDriverWait(driver, 35)
                 .until(ExpectedConditions.visibilityOf(googleCloudCalculatorLink));
         googleCloudCalculatorLink.click();
         return new GoogleCloudCalculatorPage(driver);

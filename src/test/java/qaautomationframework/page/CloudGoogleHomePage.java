@@ -20,7 +20,7 @@ public class CloudGoogleHomePage extends AbstractPage {
 
     public CloudGoogleHomePage openPage() {
         driver.get(HOME_URL);
-        new WebDriverWait(driver, 10)
+        new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.visibilityOf(searchingField));
         return this;
     }
