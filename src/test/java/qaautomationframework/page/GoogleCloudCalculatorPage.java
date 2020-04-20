@@ -16,58 +16,58 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     @FindBy(id = "myFrame")
     WebElement secondFrame;
 
-    @FindBy(id = "input_56")
+    @FindBy(id = "input_58")
     WebElement instancesField;
 
-    @FindBy(id = "select_value_label_49")
+    @FindBy(id = "select_value_label_51")
     WebElement operatingSystemBtn;
 
-    @FindBy(id = "select_option_58")
+    @FindBy(id = "select_option_60")
     WebElement freeOperatingSystem;
 
-    @FindBy(id = "select_value_label_50")
+    @FindBy(id = "select_value_label_52")
     WebElement machineClassBtn;
 
-    @FindBy(id = "select_option_70")
+    @FindBy(id = "select_option_72")
     WebElement regularMachineClass;
 
-    @FindBy(id = "select_value_label_53")
+    @FindBy(id = "select_value_label_55")
     WebElement machineType;
 
-    @FindBy(id = "select_option_209")
+    @FindBy(id = "select_option_211")
     WebElement selectRightMachineType;
 
     @FindBy(xpath = "//*[@id='mainForm']/div[1]/div/md-card/md-card-content/div/div[1]/form/div[8]/div[1]/md-input-container/md-checkbox/div[1]")
     WebElement addGpusCheckbox;
 
-    @FindBy(id = "select_value_label_327")
+    @FindBy(id = "select_value_label_332")
     WebElement numberOfGpusBtn;
 
-    @FindBy(id = "select_option_334")
+    @FindBy(id = "select_option_341")
     WebElement necessaryGpus;
 
-    @FindBy(id = "select_value_label_328")
+    @FindBy(id = "select_value_label_333")
     WebElement gpuTypeBtn;
 
-    @FindBy(id = "select_option_341")
+    @FindBy(id = "select_option_346")
     WebElement necessaryGpuType;
 
-    @FindBy(id = "select_value_label_167")
+    @FindBy(id = "select_value_label_169")
     WebElement localSsdBtn;
 
-    @FindBy(id = "select_option_230")
+    @FindBy(id = "select_option_232")
     WebElement necessaryLocalSsd;
 
-    @FindBy(id = "select_value_label_54")
+    @FindBy(id = "select_value_label_56")
     WebElement dataCenterLocationBtn;
 
-    @FindBy(id = "select_option_178")
+    @FindBy(id = "select_option_180")
     WebElement necessaryCenterLocationBtn;
 
-    @FindBy(id = "select_value_label_55")
+    @FindBy(id = "select_value_label_57")
     WebElement commitedUsageBtn;
 
-    @FindBy(id = "select_option_88")
+    @FindBy(id = "select_option_90")
     WebElement necessaryCommitedUsage;
 
     @FindBy(xpath = "//*[@id='mainForm']/div[1]/div/md-card/md-card-content/div/div[1]/form/div[15]/button")
@@ -76,13 +76,13 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     @FindBy(id = "email_quote")
     WebElement emailEstimateBtn;
 
-    @FindBy(id = "input_396")
+    @FindBy(id = "input_401")
     WebElement emailField;
 
-    @FindBy(xpath = "//*[@id='dialogContent_402']/form/md-dialog-actions/button[2]")
+    @FindBy(xpath = "//*[@id='dialogContent_407']/form/md-dialog-actions/button[2]")
     WebElement sendLetterToEmailBtn;
 
-    @FindBy(xpath = "//*[@id=\"resultBlock\"]/md-card/md-card-content/div/div/div/h2/b")
+    @FindBy(xpath = "//*[@id='resultBlock']/md-card/md-card-content/div/div/div/h2/b")
     WebElement totalCost;
 
 
