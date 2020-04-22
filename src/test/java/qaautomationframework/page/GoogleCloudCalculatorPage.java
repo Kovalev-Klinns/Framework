@@ -1,12 +1,10 @@
 package qaautomationframework.page;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import qaautomationframework.model.MachineConfiguration;
 
 public class GoogleCloudCalculatorPage extends AbstractPage {
 
@@ -22,20 +20,13 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     @FindBy(id = "select_value_label_51")
     WebElement operatingSystemBtn;
 
-    @FindBy(id = "select_option_60")
-    WebElement freeOperatingSystem;
 
     @FindBy(id = "select_value_label_52")
     WebElement machineClassBtn;
 
-    @FindBy(id = "select_option_72")
-    WebElement regularMachineClass;
 
     @FindBy(id = "select_value_label_55")
-    WebElement machineType;
-
-    @FindBy(id = "select_option_211")
-    WebElement selectRightMachineType;
+    WebElement machineTypeBtn;
 
     @FindBy(xpath = "//*[@id='mainForm']/div[1]/div/md-card/md-card-content/div/div[1]/form/div[8]/div[1]/md-input-container/md-checkbox/div[1]")
     WebElement addGpusCheckbox;
@@ -55,13 +46,13 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     @FindBy(id = "select_value_label_169")
     WebElement localSsdBtn;
 
-    @FindBy(id = "select_option_232")
+    @FindBy(id = "select_option_233")
     WebElement necessaryLocalSsd;
 
     @FindBy(id = "select_value_label_56")
     WebElement dataCenterLocationBtn;
 
-    @FindBy(id = "select_option_180")
+    @FindBy(id = "select_option_181")
     WebElement necessaryCenterLocationBtn;
 
     @FindBy(id = "select_value_label_57")
@@ -85,7 +76,6 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     @FindBy(xpath = "//*[@id='resultBlock']/md-card/md-card-content/div/div/div/h2/b")
     WebElement totalCost;
 
-
     public GoogleCloudCalculatorPage(WebDriver driver) {
        super(driver);
     }
@@ -95,7 +85,6 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
         return this;
     }
 
-
     public GoogleCloudCalculatorPage setInstances(String numberOfInstances) {
         new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.visibilityOf(instancesField));
@@ -103,22 +92,16 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
         return this;
     }
 
-    public GoogleCloudCalculatorPage setFreeOperatingSystem()  {
+    public GoogleCloudCalculatorPage setMachineConfiguration(MachineConfiguration machineConfiguration) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", operatingSystemBtn);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", freeOperatingSystem);
-        return this;
-    }
-
-    public GoogleCloudCalculatorPage setRegularMachineClass() {
+        WebElement operatingSystem = driver.findElement(By.id(machineConfiguration.getNecessaryOperatingSystem()));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", operatingSystem);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", machineClassBtn);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", regularMachineClass);
-        return this;
-    }
-
-    public GoogleCloudCalculatorPage setMachineType() {
+        WebElement machineClass = driver.findElement(By.id(machineConfiguration.getNecessaryMachineClass()));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", machineClass);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", machineTypeBtn);
+        WebElement machineType = driver.findElement(By.id(machineConfiguration.getNecessaryMachineType()));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", machineType);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", selectRightMachineType);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", freeOperatingSystem);
         return this;
     }
 
@@ -180,6 +163,15 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
         }
         switchFrame();
         return this;
+    }
+
+    public boolean emailEstimateBtnIsDisplayed() {
+        if (emailEstimateBtn.isDisplayed()) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public String getTotalCost() {

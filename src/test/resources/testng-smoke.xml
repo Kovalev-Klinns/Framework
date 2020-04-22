@@ -3,7 +3,7 @@
 <suite name="Smoke" verbose="1" >
     <test name="CommonConditions">
         <classes>
-            <class name="qaautomationframework.test.CommonConditions"/>
+            <class name="qaautomationframework.test.EstimateIsCreatedTest"/>
         </classes>
     </test>
 </suite>

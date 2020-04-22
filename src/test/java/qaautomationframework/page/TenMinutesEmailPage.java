@@ -39,6 +39,7 @@ public class TenMinutesEmailPage extends AbstractPage {
     }
 
     public GoogleCloudCalculatorPage expandMessage() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
         new WebDriverWait(driver, 180)
                 .until(ExpectedConditions.visibilityOf(messageBtn));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", messageBtn);
