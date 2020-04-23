@@ -26,7 +26,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     @FindBy(id = "select_value_label_55")
     WebElement machineTypeBtn;
 
-    @FindBy(xpath = "//*[@id='mainForm']/div[1]/div/md-card/md-card-content/div/div[1]/form/div[8]/div[1]/md-input-container/md-checkbox/div[1]")
+    @FindBy(xpath = "//md-checkbox[@aria-label='Add GPUs']")
     WebElement addGpusCheckbox;
 
     @FindBy(id = "select_value_label_332")
@@ -59,7 +59,7 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     @FindBy(id = "select_option_90")
     WebElement necessaryCommitedUsage;
 
-    @FindBy(xpath = "//*[@id='mainForm']/div[1]/div/md-card/md-card-content/div/div[1]/form/div[15]/button")
+    @FindBy(xpath = "//button[@aria-label='Add to Estimate']")
     WebElement addToEstimateBtn;
 
     @FindBy(id = "email_quote")
@@ -68,10 +68,10 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     @FindBy(id = "input_401")
     WebElement emailField;
 
-    @FindBy(xpath = "//*[@id='dialogContent_407']/form/md-dialog-actions/button[2]")
+    @FindBy(xpath = "//button[@aria-label='Send Email']")
     WebElement sendLetterToEmailBtn;
 
-    @FindBy(xpath = "//*[@id='resultBlock']/md-card/md-card-content/div/div/div/h2/b")
+    @FindBy(xpath = "//*[@id='resultBlock']//h2/b")
     WebElement totalCost;
 
     public GoogleCloudCalculatorPage(WebDriver driver) {

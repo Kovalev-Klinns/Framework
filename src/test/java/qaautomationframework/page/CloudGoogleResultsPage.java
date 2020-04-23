@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CloudGoogleResultsPage extends AbstractPage {
 
-    @FindBy(xpath = "//*[@id=\"___gcse_0\"]/div/div/div/div[5]/div[2]/div/div/div[1]/div[1]/div[1]/div[1]/div/a")
+    @FindBy(linkText = "Google Cloud Platform Pricing Calculator")
     WebElement googleCloudCalculatorLink;
 
     public CloudGoogleResultsPage(WebDriver driver) {

@@ -1,7 +1,6 @@
 package qaautomationframework.page;
 
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +12,7 @@ public class TenMinutesEmailPage extends AbstractPage {
     @FindBy(id = "mail")
     WebElement emailAddress;
 
-    @FindBy(xpath = "/html/body/main/div[1]/div/div[2]/div[2]/div/div[1]/div/div[4]/ul/li[2]/div[2]/span/a")
+    @FindBy(linkText = "Google Cloud Platform Price Estimate")
     WebElement messageBtn;
 
     @FindBy(xpath = "//*[@id='mobilepadding']/td/table/tbody/tr[2]/td[2]/h3")
