@@ -10,13 +10,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TenMinutesEmailPage extends AbstractPage {
 
-    @FindBy(id = "mail_address")
+    @FindBy(id = "mail")
     WebElement emailAddress;
 
-    @FindBy(xpath = "//*[@id='mail_messages_content']/div/div[1]/div[2]/span")
+    @FindBy(xpath = "/html/body/main/div[1]/div/div[2]/div[2]/div/div[1]/div/div[4]/ul/li[2]/div[2]/span/a")
     WebElement messageBtn;
 
-    @FindBy(xpath = "//*[@id=\"mobilepadding\"]/td/table/tbody/tr[2]/td[2]/h3")
+    @FindBy(xpath = "//*[@id='mobilepadding']/td/table/tbody/tr[2]/td[2]/h3")
     WebElement totalCostInLetter;
 
     public TenMinutesEmailPage(WebDriver driver) {
@@ -24,7 +24,7 @@ public class TenMinutesEmailPage extends AbstractPage {
     }
 
     public TenMinutesEmailPage openPageInNewWindow() {
-        ((JavascriptExecutor) driver).executeScript("window.open('https://10minutemail.com/')");
+        ((JavascriptExecutor) driver).executeScript("window.open('https://10minemail.com/ru/')");
 
         for(String tab : driver.getWindowHandles()) {
             driver.switchTo().window(tab);
@@ -32,14 +32,11 @@ public class TenMinutesEmailPage extends AbstractPage {
         return this;
     }
 
-    public GoogleCloudCalculatorPage copyEmailAddress() {
-        emailAddress.sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        emailAddress.sendKeys(Keys.chord(Keys.CONTROL, "c"));
-        return new GoogleCloudCalculatorPage(driver);
+    public String getEmailAddress() {
+        return emailAddress.getAttribute("value");
     }
 
     public GoogleCloudCalculatorPage expandMessage() {
-        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
         new WebDriverWait(driver, 180)
                 .until(ExpectedConditions.visibilityOf(messageBtn));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click()", messageBtn);

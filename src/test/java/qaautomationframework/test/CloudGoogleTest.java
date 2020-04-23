@@ -7,17 +7,20 @@ import org.testng.annotations.Test;
 
 public class CloudGoogleTest extends CommonConditions {
     private String totalCostInLetter;
+    private String emailAddress;
 
     @Test
-    public void cloudGoogleCalculatorEmailLetterTest() {
+    public void cloudGoogleCalculatorEmailLetterTest() throws InterruptedException {
         GoogleCloudCalculatorPage googleCloudCalculatorPage = new GoogleCloudCalculatorPage(driver);
         TenMinutesEmailPage tenMinutesEmailPage = new TenMinutesEmailPage(driver);
+        googleCloudCalculatorPage
+                .emailEstimate();
         tenMinutesEmailPage
-                .openPageInNewWindow()
-                .copyEmailAddress()
+                .openPageInNewWindow();
+        emailAddress = tenMinutesEmailPage.getEmailAddress();
+        googleCloudCalculatorPage
                 .switchToPage()
-                .emailEstimate()
-                .pasteEmailAddressToField()
+                .pasteEmailAddressToField(emailAddress)
                 .sendLetterToEmail()
                 .switchToPage()
                 .expandMessage();

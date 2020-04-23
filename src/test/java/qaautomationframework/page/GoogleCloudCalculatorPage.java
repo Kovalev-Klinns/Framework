@@ -20,10 +20,8 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     @FindBy(id = "select_value_label_51")
     WebElement operatingSystemBtn;
 
-
     @FindBy(id = "select_value_label_52")
     WebElement machineClassBtn;
-
 
     @FindBy(id = "select_value_label_55")
     WebElement machineTypeBtn;
@@ -145,8 +143,10 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
         return this;
     }
 
-    public GoogleCloudCalculatorPage pasteEmailAddressToField() {
-        emailField.sendKeys(Keys.chord(Keys.CONTROL, "v"));
+    public GoogleCloudCalculatorPage pasteEmailAddressToField(String emailAddress) {
+        emailField.sendKeys(emailAddress);
+        new WebDriverWait(driver, 5)
+                .until(ExpectedConditions.attributeContains(emailField, "value", emailAddress));
         return this;
     }
 
