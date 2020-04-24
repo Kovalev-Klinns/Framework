@@ -10,12 +10,11 @@ public class CloudGoogleTest extends CommonConditions {
     private String emailAddress;
 
     @Test
-    public void cloudGoogleCalculatorEmailLetterTest() throws InterruptedException {
+    public void cloudGoogleCalculatorEmailLetterTest() {
         GoogleCloudCalculatorPage googleCloudCalculatorPage = new GoogleCloudCalculatorPage(driver);
         TenMinutesEmailPage tenMinutesEmailPage = new TenMinutesEmailPage(driver);
         googleCloudCalculatorPage
-                .emailEstimate();
-        tenMinutesEmailPage
+                .emailEstimate()
                 .openPageInNewWindow();
         emailAddress = tenMinutesEmailPage.getEmailAddress();
         googleCloudCalculatorPage

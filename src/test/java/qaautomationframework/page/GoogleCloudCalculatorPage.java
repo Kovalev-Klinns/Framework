@@ -138,9 +138,9 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
         return this;
     }
 
-    public GoogleCloudCalculatorPage emailEstimate() {
+    public TenMinutesEmailPage emailEstimate() {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", emailEstimateBtn);
-        return this;
+        return new TenMinutesEmailPage(driver);
     }
 
     public GoogleCloudCalculatorPage pasteEmailAddressToField(String emailAddress) {

@@ -15,7 +15,7 @@ public class TenMinutesEmailPage extends AbstractPage {
     @FindBy(linkText = "Google Cloud Platform Price Estimate")
     WebElement messageBtn;
 
-    @FindBy(xpath = "//*[@id='mobilepadding']/td/table/tbody/tr[2]/td[2]/h3")
+    @FindBy(xpath = "//*[@id='mobilepadding']//td[2]/h3")
     WebElement totalCostInLetter;
 
     public TenMinutesEmailPage(WebDriver driver) {
