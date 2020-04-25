@@ -1,6 +1,5 @@
 package qaautomationframework.model;
 
-import org.openqa.selenium.WebElement;
 
 public class MachineConfiguration {
     private String necessaryOperatingSystem;
