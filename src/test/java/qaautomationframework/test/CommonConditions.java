@@ -6,8 +6,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import qaautomationframework.driver.DriverSingleton;
 import qaautomationframework.page.CloudGoogleHomePage;
-import qaautomationframework.page.GoogleCloudCalculatorPage;
-import qaautomationframework.service.MachineConfigurationCreator;
 import qaautomationframework.service.TestDataReader;
 import qaautomationframework.util.TestListener;
 
@@ -17,21 +15,13 @@ public class CommonConditions {
     private String searchText = TestDataReader.getTestData("testdata.searching.text");
 
     @BeforeMethod(alwaysRun = true)
-    public void setUp() throws InterruptedException {
+    public void setUp() {
         driver = DriverSingleton.getDriver();
         CloudGoogleHomePage cloudGoogleHomePage = new CloudGoogleHomePage(driver);
-        GoogleCloudCalculatorPage googleCloudCalculatorPage = new GoogleCloudCalculatorPage(driver);
         cloudGoogleHomePage
                 .openPage()
                 .toFind(searchText)
-                .openGoogleCloudCalculatorLink()
-                .switchFrame()
-                .setMachineConfiguration(MachineConfigurationCreator.withCredentialsFromProperty())
-                .addGPUS()
-                .setLocalSsd()
-                .setDataCenterLocation()
-                .setCommitedUsage()
-                .addToEstimate();
+                .openGoogleCloudCalculatorLink();
     }
 
     @AfterMethod
