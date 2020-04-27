@@ -2,11 +2,13 @@ package qaautomationframework.model;
 
 
 public class MachineConfiguration {
+    private String necessaryNumberOfInstances;
     private String necessaryOperatingSystem;
     private String necessaryMachineClass;
     private String necessaryMachineType;
 
-    public MachineConfiguration(String necessaryOperatingSystem, String necessaryMachineClass, String necessaryMachineType) {
+    public MachineConfiguration(String necessaryNumberOfInstances, String necessaryOperatingSystem, String necessaryMachineClass, String necessaryMachineType) {
+        this.necessaryNumberOfInstances = necessaryNumberOfInstances;
         this.necessaryOperatingSystem = necessaryOperatingSystem;
         this.necessaryMachineClass = necessaryMachineClass;
         this.necessaryMachineType = necessaryMachineType;
@@ -34,5 +36,13 @@ public class MachineConfiguration {
 
     public void setNecessaryMachineType(String necessaryMachineType) {
         this.necessaryMachineType = necessaryMachineType;
+    }
+
+    public String getNecessaryNumberOfInstances() {
+        return necessaryNumberOfInstances;
+    }
+
+    public void setNecessaryNumberOfInstances(String necessaryNumberOfInstances) {
+        this.necessaryNumberOfInstances = necessaryNumberOfInstances;
     }
 }

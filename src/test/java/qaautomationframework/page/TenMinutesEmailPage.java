@@ -4,8 +4,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TenMinutesEmailPage extends AbstractPage {
 
@@ -36,12 +34,11 @@ public class TenMinutesEmailPage extends AbstractPage {
     }
 
     public GoogleCloudCalculatorPage expandMessage() {
-        new WebDriverWait(driver, 180)
-                .until(ExpectedConditions.visibilityOf(messageBtn));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click()", messageBtn);
+        explicitWaitForElementVisibility(messageBtn, 180);
+        clickElement(messageBtn);
         return new GoogleCloudCalculatorPage(driver);
     }
-    @Override
+
     public TenMinutesEmailPage switchToPage() {
         for(String tab : driver.getWindowHandles()) {
             driver.switchTo().window(tab);

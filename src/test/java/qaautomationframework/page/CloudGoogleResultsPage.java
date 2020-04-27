@@ -3,8 +3,6 @@ package qaautomationframework.page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CloudGoogleResultsPage extends AbstractPage {
 
@@ -16,8 +14,7 @@ public class CloudGoogleResultsPage extends AbstractPage {
     }
 
     public GoogleCloudCalculatorPage openGoogleCloudCalculatorLink() {
-        new WebDriverWait(driver, 35)
-                .until(ExpectedConditions.visibilityOf(googleCloudCalculatorLink));
+        explicitWaitForElementVisibility(googleCloudCalculatorLink, 120);
         googleCloudCalculatorLink.click();
         return new GoogleCloudCalculatorPage(driver);
     }

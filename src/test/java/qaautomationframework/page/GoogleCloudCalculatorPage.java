@@ -6,7 +6,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import qaautomationframework.model.MachineConfiguration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GoogleCloudCalculatorPage extends AbstractPage {
+    private Map<String, String> operatingSystem = new HashMap<>();
+    private Map<String, String> machineClass = new HashMap<>();
+    private Map<String, String> machineType = new HashMap<>();
 
     @FindBy(xpath = "//*[@id='cloud-site']/devsite-iframe/iframe")
     WebElement firstFrame;
@@ -80,66 +86,73 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
 
     public GoogleCloudCalculatorPage switchFrame() {
         driver.switchTo().frame(firstFrame).switchTo().frame(secondFrame);
-        return this;
-    }
-
-    public GoogleCloudCalculatorPage setInstances(String numberOfInstances) {
-        new WebDriverWait(driver, 30)
-                .until(ExpectedConditions.visibilityOf(instancesField));
-        instancesField.sendKeys(numberOfInstances);
+        explicitWaitForElementVisibility(instancesField, 35);
         return this;
     }
 
     public GoogleCloudCalculatorPage setMachineConfiguration(MachineConfiguration machineConfiguration) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", operatingSystemBtn);
-        WebElement operatingSystem = driver.findElement(By.id(machineConfiguration.getNecessaryOperatingSystem()));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", operatingSystem);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", machineClassBtn);
-        WebElement machineClass = driver.findElement(By.id(machineConfiguration.getNecessaryMachineClass()));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", machineClass);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", machineTypeBtn);
-        WebElement machineType = driver.findElement(By.id(machineConfiguration.getNecessaryMachineType()));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", machineType);
+        operatingSystem.put("Free: Debian, CentOS, CoreOS, Ubuntu, or other User Provided OS", "select_option_60");
+        operatingSystem.put("Paid: Windows Server 2008r2, Windows Server 2012r2, Windows Server 2016, Windows Core", "select_option_61");
+        operatingSystem.put("Paid: Red Hat Enterprise Linux", "select_option_61");
+        //etc..
+
+        machineClass.put("Regular", "select_option_72");
+        machineClass.put("Preemptible", "select_option_73");
+
+        machineType.put("n1-standard-4 (vCPUs: 4, RAM: 15GB)", "select_option_211");
+        machineType.put("n1-standard-8 (vCPUs: 8, RAM: 30GB)", "select_option_212");
+        machineType.put("n1-standard-16 (vCPUs: 16, RAM: 60GB)", "select_option_213");
+        //etc..
+
+        instancesField.sendKeys(machineConfiguration.getNecessaryNumberOfInstances());
+        clickElement(operatingSystemBtn);
+        WebElement operatingSystemElement = driver.findElement(By.id(operatingSystem.get(machineConfiguration.getNecessaryOperatingSystem())));
+        clickElement(operatingSystemElement);
+        clickElement(machineClassBtn);
+        WebElement machineClassElement = driver.findElement(By.id(machineClass.get(machineConfiguration.getNecessaryMachineClass())));
+        clickElement(machineClassElement);
+        clickElement(machineTypeBtn);
+        WebElement machineTypeElement = driver.findElement(By.id(machineType.get(machineConfiguration.getNecessaryMachineType())));
+        clickElement(machineTypeElement);
         return this;
     }
 
     public GoogleCloudCalculatorPage addGPUS() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addGpusCheckbox);
-        new WebDriverWait(driver, 30)
-                .until(ExpectedConditions.visibilityOf(numberOfGpusBtn));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", numberOfGpusBtn);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", necessaryGpus);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", numberOfGpusBtn);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", gpuTypeBtn);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", necessaryGpuType);
+        clickElement(addGpusCheckbox);
+        explicitWaitForElementVisibility(numberOfGpusBtn, 30);
+        clickElement(numberOfGpusBtn);
+        clickElement(necessaryGpus);
+        clickElement(numberOfGpusBtn);
+        clickElement(gpuTypeBtn);
+        clickElement(necessaryGpuType);
         return this;
     }
 
     public GoogleCloudCalculatorPage setLocalSsd() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", localSsdBtn);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", necessaryLocalSsd);
+        clickElement(localSsdBtn);
+        clickElement(necessaryLocalSsd);
         return this;
     }
 
     public GoogleCloudCalculatorPage setDataCenterLocation() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", dataCenterLocationBtn);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", necessaryCenterLocationBtn);
+        clickElement(dataCenterLocationBtn);
+        clickElement(necessaryCenterLocationBtn);
         return this;
     }
 
     public GoogleCloudCalculatorPage setCommitedUsage() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", commitedUsageBtn);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", necessaryCommitedUsage);
+        clickElement(commitedUsageBtn);
+        clickElement(necessaryCommitedUsage);
         return this;
     }
 
     public GoogleCloudCalculatorPage addToEstimate() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addToEstimateBtn);
+        clickElement(addToEstimateBtn);
         return this;
     }
 
     public TenMinutesEmailPage emailEstimate() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", emailEstimateBtn);
+        clickElement(emailEstimateBtn);
         return new TenMinutesEmailPage(driver);
     }
 
@@ -151,11 +164,10 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     }
 
     public TenMinutesEmailPage sendLetterToEmail() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", sendLetterToEmailBtn);
+        clickElement(sendLetterToEmailBtn);
         return new TenMinutesEmailPage(driver);
     }
 
-    @Override
     public GoogleCloudCalculatorPage switchToPage() {
         for(String tab : driver.getWindowHandles()) {
             driver.switchTo().window(tab);

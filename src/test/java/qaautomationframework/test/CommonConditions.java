@@ -15,7 +15,6 @@ import qaautomationframework.util.TestListener;
 public class CommonConditions {
     protected WebDriver driver;
     private String searchText = TestDataReader.getTestData("testdata.searching.text");
-    private String necessaryNumberOfInstances = TestDataReader.getTestData("testdata.instances.number");
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws InterruptedException {
@@ -27,7 +26,6 @@ public class CommonConditions {
                 .toFind(searchText)
                 .openGoogleCloudCalculatorLink()
                 .switchFrame()
-                .setInstances(necessaryNumberOfInstances)
                 .setMachineConfiguration(MachineConfigurationCreator.withCredentialsFromProperty())
                 .addGPUS()
                 .setLocalSsd()

@@ -4,9 +4,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 
 public class CloudGoogleHomePage extends AbstractPage {
     private static final String HOME_URL = "https://cloud.google.com";
@@ -20,8 +17,7 @@ public class CloudGoogleHomePage extends AbstractPage {
 
     public CloudGoogleHomePage openPage() {
         driver.get(HOME_URL);
-        new WebDriverWait(driver, 60)
-                .until(ExpectedConditions.visibilityOf(searchingField));
+        explicitWaitForElementVisibility(searchingField, 180);
         return this;
     }
 
