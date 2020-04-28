@@ -15,7 +15,7 @@ public class EstimateIsCreatedTest extends CommonConditions {
         GoogleCloudCalculatorPage googleCloudCalculatorPage = new GoogleCloudCalculatorPage(driver);
         CloudGoogleHomePage cloudGoogleHomePage = new CloudGoogleHomePage(driver);
         cloudGoogleHomePage
-                .openPage()//
+                .openPage()
                 .toFind(searchText)
                 .openGoogleCloudCalculatorLink()
                 .switchFrame()

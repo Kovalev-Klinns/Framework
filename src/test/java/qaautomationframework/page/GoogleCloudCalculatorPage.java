@@ -85,8 +85,8 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
     }
 
     public GoogleCloudCalculatorPage switchFrame() {
+        explicitWaitForElementVisibility(firstFrame, 35);
         driver.switchTo().frame(firstFrame).switchTo().frame(secondFrame);
-        explicitWaitForElementVisibility(instancesField, 35);
         return this;
     }
 

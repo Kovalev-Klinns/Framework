@@ -47,6 +47,7 @@ public class TenMinutesEmailPage extends AbstractPage {
     }
 
     public String getTotalCostInLetterText() {
+        explicitWaitForElementVisibility(totalCostInLetter, 35);
        return totalCostInLetter.getText();
     }
 }
