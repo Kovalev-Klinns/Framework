@@ -17,7 +17,7 @@ public class CloudGoogleHomePage extends AbstractPage {
 
     public CloudGoogleHomePage openPage() {
         driver.get(HOME_URL);
-        explicitWaitForElementVisibility(searchingField, 180);
+        explicitWaitForElementVisibility(searchingField, 180);//
         return this;
     }
 

@@ -10,17 +10,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class AbstractPage {
     protected WebDriver driver;
 
-    protected AbstractPage(WebDriver driver) {
+    AbstractPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    protected void clickElement(WebElement webElement) {
+    void clickElement(WebElement webElement) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", webElement);
     }
 
-    protected void explicitWaitForElementVisibility(WebElement webElement, int waitingTime) {
+    void explicitWaitForElementVisibility(WebElement webElement, int waitingTime) {
         new WebDriverWait(driver, waitingTime)
-                .until(ExpectedConditions.visibilityOf(webElement));
+                .until(ExpectedConditions.visibilityOf(webElement));//!
     }
 }

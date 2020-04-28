@@ -12,16 +12,10 @@ import qaautomationframework.util.TestListener;
 @Listeners({TestListener.class})
 public class CommonConditions {
     protected WebDriver driver;
-    private String searchText = TestDataReader.getTestData("testdata.searching.text");
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
         driver = DriverSingleton.getDriver();
-        CloudGoogleHomePage cloudGoogleHomePage = new CloudGoogleHomePage(driver);
-        cloudGoogleHomePage
-                .openPage()
-                .toFind(searchText)
-                .openGoogleCloudCalculatorLink();
     }
 
     @AfterMethod
