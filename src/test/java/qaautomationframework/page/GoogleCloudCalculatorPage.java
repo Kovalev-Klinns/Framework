@@ -6,13 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import qaautomationframework.model.MachineConfiguration;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class GoogleCloudCalculatorPage extends AbstractPage {
-    private Map<String, String> operatingSystem = new HashMap<>();
-    private Map<String, String> machineClass = new HashMap<>();
-    private Map<String, String> machineType = new HashMap<>();
 
     @FindBy(xpath = "//*[@id='cloud-site']/devsite-iframe/iframe")
     WebElement firstFrame;
@@ -90,32 +84,24 @@ public class GoogleCloudCalculatorPage extends AbstractPage {
         return this;
     }
 
+    public String xpathTemplateForElement(String value) {
+        return "//*[@value='" + value + "']";
+    }
+
     public GoogleCloudCalculatorPage setMachineConfiguration(MachineConfiguration machineConfiguration) {
-        operatingSystem.put("Free: Debian, CentOS, CoreOS, Ubuntu, or other User Provided OS", "select_option_60");
-        operatingSystem.put("Paid: Windows Server 2008r2, Windows Server 2012r2, Windows Server 2016, Windows Core", "select_option_61");
-        operatingSystem.put("Paid: Red Hat Enterprise Linux", "select_option_61");
-        //etc..
-
-        machineClass.put("Regular", "select_option_72");
-        machineClass.put("Preemptible", "select_option_73");
-
-        machineType.put("n1-standard-4 (vCPUs: 4, RAM: 15GB)", "select_option_211");
-        machineType.put("n1-standard-8 (vCPUs: 8, RAM: 30GB)", "select_option_212");
-        machineType.put("n1-standard-16 (vCPUs: 16, RAM: 60GB)", "select_option_213");
-        //etc..
-
         instancesField.sendKeys(machineConfiguration.getNecessaryNumberOfInstances());
         clickElement(operatingSystemBtn);
-        WebElement operatingSystemElement = driver.findElement(By.id(operatingSystem.get(machineConfiguration.getNecessaryOperatingSystem())));
+        WebElement operatingSystemElement = driver.findElement(By.xpath(xpathTemplateForElement(machineConfiguration.getNecessaryOperatingSystem())));
         clickElement(operatingSystemElement);
         clickElement(machineClassBtn);
-        WebElement machineClassElement = driver.findElement(By.id(machineClass.get(machineConfiguration.getNecessaryMachineClass())));
+        WebElement machineClassElement = driver.findElement(By.xpath(xpathTemplateForElement(machineConfiguration.getNecessaryMachineClass())));
         clickElement(machineClassElement);
         clickElement(machineTypeBtn);
-        WebElement machineTypeElement = driver.findElement(By.id(machineType.get(machineConfiguration.getNecessaryMachineType())));
+        WebElement machineTypeElement = driver.findElement(By.xpath(xpathTemplateForElement(machineConfiguration.getNecessaryMachineType())));
         clickElement(machineTypeElement);
         return this;
     }
+
 
     public GoogleCloudCalculatorPage addGPUS() {
         clickElement(addGpusCheckbox);
